@@ -16,7 +16,9 @@ class App extends React.Component {
   searchRes = (searchResult) => {
     if(typeof(searchResult) !== 'undefined' && searchResult !== null){
       this.setState({posts: searchResult.data.return_result});
-    } 
+    }else{
+      this.setState({posts: []});
+    }
   }
   
 

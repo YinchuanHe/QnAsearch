@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-const feedbackURL = 'http://datain.rvfdp.com/api/v1/gn/sy/platform/aics/report';
+const feedbackURL = 'https://datain.rvfdp.com/api/v1/gn/sy/platform/aics/report';
 
 class Card extends React.Component {
 
