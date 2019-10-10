@@ -6,7 +6,7 @@ const CardList = ({posts}) => {
 	return(
 		<div>
       {
-        posts.map((value, index) => {
+        posts.map((_, index) => {
           return (<Card 
             key={index} 
             post={posts[index]}/
