@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import DropDown from './DropDown'
 
-const URL = 'http://datain.rvfdp.com/api/v1/gn/sy/platform/aics';
+const URL = 'https://datain.rvfdp.com/api/v1/gn/sy/platform/aics';
 const APIKEY = '1b7de672-fe55-4860-9229-9e2f3ef82884';
 
 
