@@ -1,54 +1,41 @@
-import React, {Component} from 'react';
+import React from 'react';
 import CardList from '../components/CardList';
-import SearchBox from '../components/SearchBox';
-import Scroll from '../components/Scroll'
+import Search from './Search';
+import Scroll from '../components/Scroll';
 import '../App.css';
-//import {robots} from './robots';
 
-class App extends Component {
-  constructor() {
-    super()
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
     this.state = {
       posts: [],
-      searchfield:''
-    }
+    };
   }
 
-  componentDidMount() {
-    fetch('http://localhost:4000/res')
-      .then(response=> {
-        return response.json();
-      })
-      .then(res => {
-        this.setState({posts: res[2].return_result})
-      })
-      // .then(res => console.log(res[2].return_result))
+  searchRes = (searchResult) => {
+    if(typeof(searchResult) !== 'undefined'){
+      this.setState({posts: searchResult.data.return_result});
+    } 
   }
-
-  onSearchChange = (event) => {
-    this.setState({searchfield: event.target.value})
-  }
+  
 
   render() {
-    // const filteredPosts = this.state.posts.filter( post =>{
-    //   return post.question.toLowerCase().includes(this.state.searchfield.toLowerCase());
-    // })
-    if(this.state.posts.length === 0){
+    if(typeof(this.state.posts) == 'undefined' || this.state.posts.length === 0){
       return (
         <div className='tc'>
-          <h1>Internal F&Q</h1>
-          <SearchBox></SearchBox>
+          <h1>智能客服知识库</h1>
+          <Search searchRes = {this.searchRes}/>
           <Scroll>
-            <h1>Loading...</h1>
+            <h1>没有结果。。。</h1>
           </Scroll>
         </div>   
       );
     } else {
       return (
         <div className='tc'>
-          <h1>Internal F&Q</h1>
-          {/* <SearchBox searchChange = {this.onSearchChange}/> */}
-          <SearchBox></SearchBox>
+          <h1>智能客服知识库</h1>
+          <Search searchRes = {this.searchRes}/>
           <Scroll>
             <CardList posts={this.state.posts} />
           </Scroll>
