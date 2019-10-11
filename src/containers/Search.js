@@ -37,12 +37,21 @@ class Search extends  React.Component {
           cancelToken: this.cancel.token,
         })
         .then((res) => {
-          this.setState({
-            results: res,
-          }, () => {
-            //console.log('return search res');
-            this.sendDatatoApp(res);
-          } );
+          if(res.data.return_code === 200){
+            this.setState({
+              results: res,
+            }, () => {
+              this.sendDatatoApp(res);
+            } );
+          }else if(res.data.return_code === 201){
+            console.log('未找到结果');
+            //console.log(res);
+            this.sendDatatoApp(null);
+          }else if(res.data.return_code === 202){
+            console.log('处理失败');
+            this.sendDatatoApp(null);
+            //console.log(res);
+          }
         })
         .catch((error) => {
           if (axios.isCancel(error) || error) {
@@ -146,10 +155,10 @@ class Search extends  React.Component {
           <label className="search-label" htmlFor="search-input">
             <input
               type="text"
-              className='pa3 ba b--blue bg-lightest-blue'
+              className='pa3 ba b--black-20 br2 bg-lightest-gray'
               value={this.state.query}
               id="search-input"
-              placeholder="搜索。。。"
+              placeholder="输出关键词"
               onChange={this.handleOnInputChange}
               onKeyPress={this.handleOnEnter}
             />

@@ -1,6 +1,14 @@
 import React from 'react';
 import Select from 'react-select';
 
+const customStyles = {
+  control: base => ({
+    ...base,
+    height: 52,
+    minHeight: 52
+  })
+};
+
 const games = [
   { label: "通用", value: '0' },
   { label: "MUS精灵盛典", value: '5748' },
@@ -36,17 +44,18 @@ class DropDown extends React.Component {
     const { selectedOption } = this.state;
  
     return (
-      <div className="container w-third">
+      <div className="container w-20">
         <div className="row">
-          <div className="ba b--blue bg-lightest-blue"></div>
-          <div className="ba b--blue bg-lightest-blue">
+          <div className=""></div>
+          <div className="">
             <Select
+              styles={customStyles}
               placeholder="选择游戏"
               value={ selectedOption }
               onChange={this.handleChange}
               options={ games } />
           </div>
-          <div className="ba b--blue bg-lightest-blue"></div>
+          <div className=""></div>
         </div>
       </div>
     );

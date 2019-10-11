@@ -62,17 +62,17 @@ class Card extends React.Component {
 
 	render() {
 		return(
-			<div className = 'bg-light-blue br3 ma2 shadow-3'>
+			<div className = 'bg-lightest-gray br3 ma2 shadow-3'>
 				<div>
 					<h3>{this.props.post.question}</h3>
 					<p onCopy={this.handelOnCopy}>{this.props.post.answer}</p>
-					<button onClick={this.clickLike} className = 'bg-light-blue ba b--white-025 ma2 dim'>
+					<button onClick={this.clickLike} className = 'bg-lightest-gray ba b--white-025 ma2 dim'>
 						<span role="img" aria-label="thumbs-up">👍</span> {this.state.like} 
 					</button>
-					<button onClick={this.clickDislike} className = 'bg-light-blue ba b--white-025 ma2 dim'>
+					<button onClick={this.clickDislike} className = 'bg-lightest-gray ba b--white-025 ma2 dim'>
 						<span role="img" aria-label="thumbs-down">👎</span> {this.state.dislike}
 					</button>
-					<button onClick={this.clickReport} className = 'bg-light-blue ba b--white-025 ma2 dim'>
+					<button onClick={this.clickReport} className = 'bg-lightest-gray ba b--white-025 ma2 dim'>
 						<span role="img" aria-label="warning">⚠️</span> {this.state.report}
 					</button>
 				</div>
