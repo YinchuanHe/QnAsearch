@@ -4,7 +4,7 @@ import Card from '../containers/Card';
 const CardList = ({posts}) => {
   
 	return(
-		<div>
+		<div className="tc">
       {
         posts.map((_, index) => {
           return (<Card 

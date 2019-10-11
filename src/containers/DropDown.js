@@ -2,12 +2,18 @@ import React from 'react';
 import Select from 'react-select';
 
 const games = [
-  { label: "游戏01", value: '99999' },
-  { label: "游戏02", value: '99999' },
-  { label: "游戏03", value: '99999' },
-  { label: "游戏04", value: '99999' },
-  { label: "游戏05", value: '99999' },
-  { label: "游戏06", value: '99999' },
+  { label: "通用", value: '0' },
+  { label: "MUS精灵盛典", value: '5748' },
+  { label: "斗罗大陆", value: '5690' },
+  { label: "大天使之剑", value: '5650' },
+  { label: "永恒纪元", value: '5346' },
+  { label: "烽火攻城", value: '5761' },
+  { label: "一刀传世", value: '5775' },
+  { label: "云上城之歌", value: '5793' },
+  { label: "屠龙破晓", value: '5725' },
+  { label: "剑与轮回", value: '5680' },
+  { label: "鬼语迷城", value: '5662' },
+  { label: "其他游戏", value: '99999' },
 ];
 
 class DropDown extends React.Component {

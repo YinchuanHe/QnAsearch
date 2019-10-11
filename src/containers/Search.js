@@ -128,6 +128,12 @@ class Search extends  React.Component {
     this.fetchButtonSearch(this.state.gameId ,this.state.query);
   }
 
+  handleOnEnter = (e) => {
+    if(e.which === 13) {
+      this.fetchButtonSearch(this.state.gameId ,this.state.query);
+    }
+  }
+
   componentDidMount(){
     this.loadTrend();
   }
@@ -145,6 +151,7 @@ class Search extends  React.Component {
               id="search-input"
               placeholder="搜索。。。"
               onChange={this.handleOnInputChange}
+              onKeyPress={this.handleOnEnter}
             />
             <button className="pa3 bg-white ba b--white-025 dim" onClick={this.handleOnClick}>
               <span role="img" aria-label="search">🔍</span>

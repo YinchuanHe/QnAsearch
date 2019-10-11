@@ -62,7 +62,7 @@ class Card extends React.Component {
 
 	render() {
 		return(
-			<div className = 'bg-light-blue dib br3 ma2 shadow-3'>
+			<div className = 'bg-light-blue br3 ma2 shadow-3'>
 				<div>
 					<h3>{this.props.post.question}</h3>
 					<p onCopy={this.handelOnCopy}>{this.props.post.answer}</p>
