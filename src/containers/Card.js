@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 const feedbackURL = 'https://datain.rvfdp.com/api/v1/gn/sy/platform/aics/report';
 
@@ -10,7 +11,8 @@ class Card extends React.Component {
 		this.state = {
 			id: props.post.question_id,
 			like: props.post.up,
-			dislike: props.post.down
+      dislike: props.post.down,
+      isButtonDisabled: false
 		};
   }
   
@@ -56,25 +58,44 @@ class Card extends React.Component {
     this.fetchRes('3');
 	}
 
-	handelOnCopy = () => {
+	clickCopy = () => {
     this.fetchRes('4');
-	}
+    console.log('Copied!!')
+  }
+  
+  timeOutAfterClick = (e) => {
+    e.preventDefault();
+    this.setState({
+        isButtonDisabled: true
+    });
+
+    // **** here's the timeout ****
+    setTimeout(() => this.setState({ isButtonDisabled: false }), 2000);
+  }
 
 	render() {
 		return(
 			<div className = 'bg-lightest-gray br3 ma2 shadow-3'>
 				<div>
 					<h3>{this.props.post.question}</h3>
-					<p onCopy={this.handelOnCopy}>{this.props.post.answer}</p>
-					<button onClick={this.clickLike} className = 'bg-lightest-gray ba b--white-025 ma2 dim'>
+          <p onCopy={this.clickCopy}>{this.props.post.answer}</p>
+					<button onClick={this.clickLike} className = 'bg-lightest-gray ba b--white-025 br2 ma2 dim'>
 						<span role="img" aria-label="thumbs-up">👍</span> {this.state.like} 
 					</button>
-					<button onClick={this.clickDislike} className = 'bg-lightest-gray ba b--white-025 ma2 dim'>
+					<button onClick={this.clickDislike} className = 'bg-lightest-gray ba b--white-025 br2 ma2 dim'>
 						<span role="img" aria-label="thumbs-down">👎</span> {this.state.dislike}
 					</button>
-					<button onClick={this.clickReport} className = 'bg-lightest-gray ba b--white-025 ma2 dim'>
+					<button onClick={this.clickReport} className = 'bg-lightest-gray ba b--white-025 br2 ma2 dim'>
 						<span role="img" aria-label="warning">⚠️</span> {this.state.report}
 					</button>
+					<CopyToClipboard text={this.props.post.answer} onCopy={this.clickCopy}>
+            <button 
+              onClick={this.timeOutAfterClick} 
+              disabled={this.state.isButtonDisabled} 
+              className = 'bg-lightest-gray ba b--white-025 br2 ma2 dim'>
+            	复制
+            </button>
+          </CopyToClipboard>
 				</div>
 			</div>
 		);
