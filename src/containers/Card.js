@@ -9,6 +9,7 @@ class Card extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+      message: '',
 			id: props.post.question_id,
 			like: props.post.up,
       dislike: props.post.down,
@@ -73,12 +74,20 @@ class Card extends React.Component {
     setTimeout(() => this.setState({ isButtonDisabled: false }), 2000);
   }
 
+  addLineBreaks = (string) =>
+  string.split('<br/>').map((text, index) => (
+    <React.Fragment key={`${text}-${index}`}>
+      {text}
+      <br />
+    </React.Fragment>
+  ));
+
 	render() {
 		return(
 			<div className = 'bg-lightest-gray br3 ma2 shadow-3'>
 				<div>
 					<h3>{this.props.post.question}</h3>
-          <p onCopy={this.clickCopy}>{this.props.post.answer}</p>
+          <p onCopy={this.clickCopy}>{this.addLineBreaks(this.props.post.answer)}</p>
 					<button onClick={this.clickLike} className = 'bg-lightest-gray ba b--white-025 br2 ma2 dim'>
 						<span role="img" aria-label="thumbs-up">👍</span> {this.state.like} 
 					</button>
