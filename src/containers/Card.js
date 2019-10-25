@@ -13,7 +13,8 @@ class Card extends React.Component {
 			id: props.post.question_id,
 			like: props.post.up,
       dislike: props.post.down,
-      isButtonDisabled: false
+      isButtonDisabled: false,
+      imageLoaded: false
 		};
   }
   
@@ -82,12 +83,20 @@ class Card extends React.Component {
     </React.Fragment>
   ));
 
+  onLoad = () => {
+    this.setState({
+        imageLoaded: true
+    })
+  }
+
 	render() {
+    const style = this.state.imageLoaded ? {} : {visibility: 'hidden'}
 		return(
 			<div className = 'bg-lightest-gray br3 ma2 shadow-3'>
 				<div>
 					<h3>{this.props.post.question}</h3>
           <p onCopy={this.clickCopy}>{this.addLineBreaks(this.props.post.answer)}</p>
+          <img src={this.props.post.answer_pic} style={style} onLoad={this.onLoad} alt='answer_image'/>
 					<button onClick={this.clickLike} className = 'bg-lightest-gray ba b--white-025 br2 ma2 dim'>
 						<span role="img" aria-label="thumbs-up">👍</span> {this.state.like} 
 					</button>

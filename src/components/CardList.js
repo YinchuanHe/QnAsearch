@@ -7,10 +7,7 @@ const CardList = ({posts}) => {
 		<div className="tc">
       {
         posts.map((_, index) => {
-          return (<Card 
-            key={index} 
-            post={posts[index]}/
-          >)
+          return (<Card key={index} post={posts[index]}/>)
         })
       }
     </div>
